@@ -8,12 +8,18 @@ class ComposerStaticInitc70414d53ca557da7151bc4a3a37c2ee
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e320f53bb3364b7ed572ecc5ef33c5cf' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Slim\\' => 5,
         ),
         'P' => 
@@ -36,6 +42,14 @@ class ComposerStaticInitc70414d53ca557da7151bc4a3a37c2ee
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
@@ -63,6 +77,13 @@ class ComposerStaticInitc70414d53ca557da7151bc4a3a37c2ee
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
         'P' => 
         array (
             'Pimple' => 

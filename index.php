@@ -16,6 +16,11 @@ $app->get('/', function ()
     $AuthController = new \App\Controllers\AuthController;
     $AuthController->index();
 });
+$app->get('/estados', function ()
+{
+    $ClientsController = new \App\Controllers\ClientsController;
+    $ClientsController->states();
+});
 
 $app->post('/logout', function ()
 {
@@ -34,7 +39,7 @@ $app->post('/login', function ()
 });
 // adição de usuário
 // exibe o formulário de cadastro
-$app->get('/clientes', function ()
+$app->get('/pacientes', function ()
 {
     $ClientsController = new \App\Controllers\ClientsController;
     $ClientsController->index();

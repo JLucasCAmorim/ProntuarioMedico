@@ -9,6 +9,6 @@ define('MYSQL_PASS', '!Lucas15345216');
 define('MYSQL_DBNAME', 'php_crud');
 
 // configurações do PHP
-ini_set('display_errors', true);
+ini_set('default_charset','UTF-8');
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');

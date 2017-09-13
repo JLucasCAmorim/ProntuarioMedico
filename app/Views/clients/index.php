@@ -3,7 +3,7 @@
 
 <div class="fixed-action-btn horizontal">
 
-<a class="btn-floating btn-large white" href="/add"><i class="large material-icons icon-red ">add</i></a>
+<a class="btn-floating btn-large #ff1744 red accent-3" href="/add"><i class="large material-icons ">add</i></a>
 
  </div>
 <?php if (count($clients) > 0): ?>
@@ -18,6 +18,7 @@
              </div>
                 <div class="card-content">
                   <p>Nome: <?php echo $client['nomeCompleto']; ?></p>
+                  <p>Cpf: <?php echo $client['cpf']; ?> RG: <?php echo $client['rg']; ?></p>
                   <p>Email: <?php echo $client['email']; ?>  </p>
                   <p>Celular: <?php echo $client['celular']; ?> </p>
                   <p>Data de Nascimento: <?php echo $client['datanascimento']; ?></p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Prontuario-Medico</title>
 
@@ -13,11 +13,11 @@
 <body>
   <nav class="#c62828 red darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="/home" class="brand-logo">Prontuário Médico</a>
+      <a id="logo-container" href="/home" class="brand-logo"><?php echo $pagetitle; ?></a>
       <ul class="right hide-on-med-and-down">
         <?php if ($_COOKIE['login']): ?>
 
-        <li><a href="/clientes">Pacientes</a></li>
+        <li><a href="/pacientes">Pacientes</a></li>
         <li>
             <a class="dropdown-button" href="#!" data-activates="dropdown2">
                 Logout <span class="caret"></span>
@@ -75,8 +75,11 @@
   <script src="/public/js/jquery.min.js"></script>
   <script src="/public/js/jquery-ui.min.js"></script>
   <script src="/public/js/materialize.min.js"></script>
+  <script src="/public/js/jquery-mask.js"></script>
   <script>
   $(document).ready(function(){
+    $('.parciente-form')
+    $('#cpf').mask('000.000.000-00', {reverse: false});
     $(".dropdown-button").dropdown();
      $('.parallax').parallax();
      // Initialize collapse button
@@ -84,7 +87,7 @@
      // Initialize collapsible (uncomment the line below if you use the dropdown variation)
      //$('.collapsible').collapsible()
      $('.carousel').carousel();
-    $('select').material_select();
+     $('select').material_select();
      $('.datepicker').pickadate({
        selectMonths: true,
        selectYears: 60,
@@ -107,13 +110,15 @@
   </script>
   <script type="text/javascript">
   $(document).on('change', '.parciente-form #paciente_estados', function(){
-  $.ajax '/states_by_country',
-  type: 'GET'
-  dataType: 'script'
+  $.ajax ({
+  url:'/estados',
+  type: 'GET',
+  dataType: 'script',
   data: {
     select_input: '#paciente_cidades',
-    country_id: $('#paciente_estados option:selected').val()
+    id: $('#paciente_estados option:selected').val()
   }
+});
   });
   </script>
   </body>

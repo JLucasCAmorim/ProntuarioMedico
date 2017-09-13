@@ -4,7 +4,7 @@ use App\DB;
 class Client {
    /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */
    public static function selectAll($idclient = null) {
-     $where = ''; if (!empty($idclient)) { $where = 'WHERE idclient = :id'; }
+     $where = ''; if (!empty($idclient)) { $where = 'WHERE idclient = :idclient'; }
      $sql = sprintf("SELECT idclient, nomeCompleto, cpf, rg, datanascimento, naturalidade, nacionalidade, email, telefone, celular, idcidade, cep, complemento, nomePai, nomeMae, tipoSangue FROM clients %s ORDER BY nomeCompleto ASC", $where);
      $DB = new DB; $stmt = $DB->prepare($sql);
 
@@ -31,13 +31,15 @@ class Client {
         if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)|| empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)|| empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
          || empty($nomePai)|| empty($nomeMae)|| empty($tipoSangue))
         {
-            echo "Volte e preencha todos os campos";
+
+            echo"<script language='javascript' type='text/javascript'>alert('Volte e preencha todos os campos');window.location.href='/add';</script>";
+            die();
             return false;
         }
 
         // a data vem no formato dd/mm/YYYY
         // então precisamos converter para YYYY-mm-dd
-        $isoDate = dateConvert($datanascimento);
+
 
         // insere no banco
         $DB = new DB;
@@ -52,7 +54,7 @@ class Client {
         $stmt->bindParam(':nomeCompleto', $nomeCompleto);
         $stmt->bindParam(':cpf', $cpf);
         $stmt->bindParam(':rg', $rg);
-        $stmt->bindParam(':datanascimento', $isoDate);
+        $stmt->bindParam(':datanascimento', $datanascimento);
         $stmt->bindParam(':naturalidade', $naturalidade);
         $stmt->bindParam(':nacionalidade', $nacionalidade);
         $stmt->bindParam(':email', $email);
@@ -87,13 +89,13 @@ class Client {
         // validação (bem simples, só pra evitar dados vazios)
         if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)|| empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)|| empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
          || empty($nomePai)|| empty($nomeMae)|| empty($tipoSangue))  {
-            echo "Volte e preencha todos os campos";
-            return false;
+
+             $errMsg = "Algum campo está vazio!";
         }
 
         // a data vem no formato dd/mm/YYYY
         // então precisamos converter para YYYY-mm-dd
-        $isoDate = dateConvert($datanascimento);
+
 
         // insere no banco
         $DB = new DB;
@@ -104,7 +106,7 @@ class Client {
         $stmt->bindParam(':nomeCompleto', $nomeCompleto);
         $stmt->bindParam(':cpf', $cpf);
         $stmt->bindParam(':rg', $rg);
-        $stmt->bindParam(':datanascimento', $isoDate);
+        $stmt->bindParam(':datanascimento', $datanascimento);
         $stmt->bindParam(':naturalidade', $naturalidade);
         $stmt->bindParam(':nacionalidade', $nacionalidade);
         $stmt->bindParam(':email', $email);

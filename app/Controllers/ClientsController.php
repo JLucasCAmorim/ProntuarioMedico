@@ -8,7 +8,7 @@ class ClientsController {
   /** * Listagem de usuários */
   public function index()
   {
-    $clients = Client::selectAll(); \App\View::make('clients/index', [ 'clients' => $clients,
+    $clients = Client::selectAll(); \App\View::make('Index Paciente','clients/index', [ 'clients' => $clients,
         ]);
     }
 
@@ -21,7 +21,7 @@ class ClientsController {
         $estados = State::selectAll();
         $cidades = City::selectAll();
 
-        \App\View::make('clients/create', [ 'cidades' => $cidades,
+        \App\View::make('Inserindo Paciente','clients/create', [ 'cidades' => $cidades,
         'estados' => $estados]);
     }
 
@@ -32,14 +32,27 @@ class ClientsController {
     public function store()
     {
         // pega os dados do formuário
-        $name = isset($_POST['name']) ? $_POST['name'] : null;
+        $nomeCompleto = isset($_POST['nomeCompleto']) ? $_POST['nomeCompleto'] : null;
+        $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
+        $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
+        $naturalidade = isset($_POST['naturalidade']) ? $_POST['naturalidade'] : null;
+        $nacionalidade = isset($_POST['nacionalidade']) ? $_POST['nacionalidade'] : null;
         $email = isset($_POST['email']) ? $_POST['email'] : null;
-        $gender = isset($_POST['gender']) ? $_POST['gender'] : null;
-        $birthdate = isset($_POST['birthdate']) ? $_POST['birthdate'] : null;
+        $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+        $celular= isset($_POST['celular']) ? $_POST['celular'] : null;
+        $idcidade = isset($_POST['idcidade']) ? $_POST['idcidade'] : null;
+        $cep = isset($_POST['cep']) ? $_POST['cep'] : null;
+        $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : null;
+        $nomePai = isset($_POST['nomePai']) ? $_POST['nomePai'] : null;
+        $nomeMae = isset($_POST['nomeMae']) ? $_POST['nomeMae'] : null;
+        $tipoSangue= isset($_POST['tipoSangue']) ? $_POST['tipoSangue'] : null;
+        $datanascimento = isset($_POST['datanascimento']) ? $_POST['datanascimento'] : null;
 
-        if (Client::save($name, $email, $gender, $birthdate))
+        if (Client::save($nomeCompleto, $cpf, $rg, $datanascimento,
+         $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade,
+          $cep, $complemento, $nomePai, $nomeMae, $tipoSangue))
         {
-            header('Location: /');
+            header('Location: /pacientes');
             exit;
         }
     }
@@ -49,12 +62,14 @@ class ClientsController {
     /**
      * Exibe o formulário de edição de usuário
      */
-    public function edit($id)
+    public function edit($idclient)
     {
-        $client = Client::selectAll($id)[0];
-
-        \App\View::make('clients/edit',[
-            'client' => $client,
+        $client = Client::selectAll($idclient)[0];
+        $estados = State::selectAll();
+        $cidades = City::selectAll();
+        \App\View::make('Editando Paciente','clients/edit',[
+            'client' => $client, 'cidades' => $cidades,
+            'estados' => $estados
         ]);
     }
 
@@ -65,13 +80,25 @@ class ClientsController {
     public function update()
     {
         // pega os dados do formuário
-        $id = $_POST['id'];
-        $name = isset($_POST['name']) ? $_POST['name'] : null;
+        $idclient = $_POST['idclient'];
+        $nomeCompleto = isset($_POST['nomeCompleto']) ? $_POST['nomeCompleto'] : null;
+        $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
+        $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
+        $naturalidade = isset($_POST['naturalidade']) ? $_POST['naturalidade'] : null;
+        $nacionalidade = isset($_POST['nacionalidade']) ? $_POST['nacionalidade'] : null;
         $email = isset($_POST['email']) ? $_POST['email'] : null;
-        $gender = isset($_POST['gender']) ? $_POST['gender'] : null;
-        $birthdate = isset($_POST['birthdate']) ? $_POST['birthdate'] : null;
-
-        if (Client::update($id, $name, $email, $gender, $birthdate))
+        $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+        $celular= isset($_POST['celular']) ? $_POST['celular'] : null;
+        $idcidade = isset($_POST['idcidade']) ? $_POST['idcidade'] : null;
+        $cep = isset($_POST['cep']) ? $_POST['cep'] : null;
+        $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : null;
+        $nomePai = isset($_POST['nomePai']) ? $_POST['nomePai'] : null;
+        $nomeMae = isset($_POST['nomeMae']) ? $_POST['nomeMae'] : null;
+        $tipoSangue= isset($_POST['tipoSangue']) ? $_POST['tipoSangue'] : null;
+        $datanascimento = isset($_POST['datanascimento']) ? $_POST['datanascimento'] : null;
+        if (Client::update($id, $nomeCompleto, $cpf, $rg, $datanascimento,
+         $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade,
+          $cep, $complemento, $nomePai, $nomeMae, $tipoSangue))
         {
             header('Location: /');
             exit;
@@ -86,8 +113,14 @@ class ClientsController {
     {
         if (Client::remove($id))
         {
-            header('Location: /');
+            header('Location: /pacientes');
             exit;
         }
+    }
+
+    public function states(){
+      $states = State::selectAll($id);
+
+      echo json_encode(array("erro" => "0", "proc" => $states));
     }
 }

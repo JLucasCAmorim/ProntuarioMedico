@@ -12,7 +12,7 @@ class City {
         {
             $stmt->bindParam(':estado', $estado, \PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
 
         $cidades = $stmt->fetchAll(\PDO::FETCH_ASSOC);

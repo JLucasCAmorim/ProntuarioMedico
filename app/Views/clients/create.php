@@ -1,12 +1,11 @@
-<h2>Cadastro de Pacientes</h2>
-
 <form class="paciente-form col s12" action="/add" method="post">
+  <span><?php echo $errMsg;?></span>
   <div class="row">
 
     <div class="input-field col s12">
-    <label for="name">Nome Completo: </label>
+    <label for="nomeCompleto">Nome Completo: </label>
 
-    <input type="text" name="nomeCompleto" id="nomeCompleto">
+    <input type="text" name="nomeCompleto" id="nomeCompleto" required>
     </div>
   </div>
   <div class="row">
@@ -14,23 +13,23 @@
     <div class="input-field col s6">
       <label for="cpf">CPF: </label>
 
-      <input type="text" name="cpf" id="cpf">
+      <input type="text" name="cpf" id="cpf" required>
     </div>
     <div class="input-field col s6">
       <label for="rg">RG: </label>
 
-      <input type="text" name="rg" id="rg">
+      <input type="text" name="rg" id="rg" required>
     </div>
     </div>
     <div class="row">
 
       <div class="input-field col s6">
-        <label for="naturalidade">Naturalidade: </label>
+        <label for="naturalidade">Naturalidade: </label required>
 
         <input type="text" name="naturalidade" id="naturalidade">
       </div>
       <div class="input-field col s6">
-        <label for="nacionalidade">Nacionalidade: </label>
+        <label for="nacionalidade">Nacionalidade: </label required>
 
         <input type="text" name="nacionalidade" id="nacionalidade" >
       </div>
@@ -40,7 +39,7 @@
     <div class="input-field col s12">
     <label for="email">Email: </label>
 
-    <input type="email" name="email" id="email">
+    <input type="email" name="email" id="email" required>
 </div>
 </div>
 <div class="row">
@@ -52,15 +51,21 @@
 <div class="input-field col s6">
   <label for="celular">Celular: </label>
 
-  <input type="text" name="celular" id="celular" >
+  <input type="text" name="celular" id="celular" required >
 </div>
 </div>
 <div class="row">
 
-  <div class="input-field col s12">
+  <div class="input-field col s6">
   <label for="complemento">Complemento: </label>
 
   <input type="text" name="complemento" id="complemento">
+</div>
+
+  <div class="input-field col s6">
+  <label for="cep">Cep: </label>
+
+  <input type="text" name="cep" id="cep" required>
 </div>
 </div>
 <div class="row">
@@ -68,7 +73,7 @@
   <div class="input-field col s12">
   <label for="nomePai">Nome do pai: </label>
 
-  <input type="text" name="nomePai" id="nomePai">
+  <input type="text" name="nomePai" id="nomePai" required>
 </div>
 </div>
 <div class="row">
@@ -76,7 +81,7 @@
   <div class="input-field col s12">
   <label for="nomeMae">Nome da mãe: </label>
 
-  <input type="text" name="nomeMae" id="nomeMae">
+  <input type="text" name="nomeMae" id="nomeMae" required>
 </div>
 </div>
 <div class="row">
@@ -84,7 +89,7 @@
   <div class="input-field col s12">
     <label for="datanascimento">Data de Nascimento: </label>
 
-    <input type="text" name="datanascimento" id="datanascimento" class="datepicker">
+    <input type="text" name="datanascimento" id="datanascimento" class="datepicker" required>
   </div>
   </div>
   <div class="row">
@@ -92,13 +97,13 @@
     <div class="input-field col s6">
     <label for="tipoSangue">Tipo Sanguineo: </label>
 
-    <input type="text" name="tipoSangue" id="tipoSangue">
+    <input type="text" name="tipoSangue" id="tipoSangue" required>
   </div>
   <div class="input-field col s6">
-    <select id = "#paciente_cidades">
+    <select name="idcidade" id="idcidade">
       <option value="" disabled selected>Escolha a cidade</option>
       <?php foreach ($cidades as $cidade): ?>
-      <option value="<?php echo $cidade['id']; ?>"><?php echo $cidade['nome']; ?></option>
+      <option value="<?php echo $cidade['id']; ?>"><?php echo utf8_encode($cidade['nome']); ?></option>
       <?php endforeach; ?>
     </select>
 
@@ -112,7 +117,9 @@
       <select id = "#paciente_estados">
         <option value="" disabled selected>Escolha o Estado</option>
         <?php foreach ($estados as $estado): ?>
-        <option value="<?php echo $estado['id']; ?>"><?php echo $estado['nome']; ?></option>
+        <option value="<?php echo $estado['id']; ?>">
+          <?php echo utf8_encode($estado['nome']); ?>
+        </option>
         <?php endforeach; ?>
       </select>
     <label for="estado">Estado: </label>
@@ -120,6 +127,6 @@
   </div>
 
 <div class="fixed-action-btn horizontal">
-    <button class="btn-floating btn-large white" type="submit"><i class="large material-icons icon-red ">save</i></button>
+    <button class="btn-floating btn-large #ff1744 red accent-3" type="submit"><i class="large material-icons">save</i></button>
   </div>
 </form>

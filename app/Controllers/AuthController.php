@@ -9,10 +9,10 @@ class AuthController {
   {
 
       if(!empty($_COOKIE['login'])){
-        \App\View::make('home/index');
+        \App\View::make('Home','home/index');
       }
       else{
-      \App\View::make('Auth/login');
+      \App\View::make('Login','Auth/login');
       }
     }
 
