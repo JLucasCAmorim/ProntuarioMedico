@@ -8,7 +8,7 @@ class ClientsController {
   /** * Listagem de usuários */
   public function index()
   {
-    $clients = Client::selectAll(); \App\View::make('Index Paciente','clients/index', [ 'clients' => $clients,
+    $clients = Client::selectAll(); \App\View::make('Pacientes','clients/index', [ 'clients' => $clients,
         ]);
     }
 
@@ -62,14 +62,15 @@ class ClientsController {
     /**
      * Exibe o formulário de edição de usuário
      */
-    public function edit($idclient)
+    public function edit($id, $idcidade)
     {
-        $client = Client::selectAll($idclient)[0];
+        $client = Client::selectAll($id)[0];
+        $cidadeclient = City::selectAll($idcidade)[0];
         $estados = State::selectAll();
-        $cidades = City::selectAll();
+
         \App\View::make('Editando Paciente','clients/edit',[
-            'client' => $client, 'cidades' => $cidades,
-            'estados' => $estados
+            'client' => $client,
+            'estados' => $estados, 'cidadeclient' => $cidadeclient
         ]);
     }
 
@@ -96,11 +97,14 @@ class ClientsController {
         $nomeMae = isset($_POST['nomeMae']) ? $_POST['nomeMae'] : null;
         $tipoSangue= isset($_POST['tipoSangue']) ? $_POST['tipoSangue'] : null;
         $datanascimento = isset($_POST['datanascimento']) ? $_POST['datanascimento'] : null;
-        if (Client::update($id, $nomeCompleto, $cpf, $rg, $datanascimento,
+
+
+
+        if (Client::update($idclient, $nomeCompleto, $cpf, $rg, $datanascimento,
          $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade,
           $cep, $complemento, $nomePai, $nomeMae, $tipoSangue))
         {
-            header('Location: /');
+            header('location: /pacientes');
             exit;
         }
     }
@@ -118,9 +122,16 @@ class ClientsController {
         }
     }
 
-    public function states(){
-      $states = State::selectAll($id);
+    public function states($id){
 
-      echo json_encode(array("erro" => "0", "proc" => $states));
+
+      $cidades = City::selectAll();
+
+      foreach ($cidades as $cidade ) {
+        if ($cidade['estado'] == $id['id'] ) {
+          echo "<option value=" .$cidade[id] . ">" . utf8_encode($cidade['nome']) . "</option>";  
+        }
+      }
+
     }
 }

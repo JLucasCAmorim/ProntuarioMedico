@@ -16,11 +16,6 @@ $app->get('/', function ()
     $AuthController = new \App\Controllers\AuthController;
     $AuthController->index();
 });
-$app->get('/estados', function ()
-{
-    $ClientsController = new \App\Controllers\ClientsController;
-    $ClientsController->states();
-});
 
 $app->post('/logout', function ()
 {
@@ -56,19 +51,31 @@ $app->post('/add', function ()
     $ClientsController = new \App\Controllers\ClientsController;
     $ClientsController->store();
 });
+$app->get('/estados', function($request){
 
+  $id = $request->getAttribute('id');
+  $ClientsController = new \App\Controllers\ClientsController;
+  $ClientsController->states($_GET);
+
+
+});
 
 // edição de usuário
 // exibe o formulário de edição
-$app->get('/edit/{id}', function ($request)
+$app->get('/edit/{id}/{idcidade}', function ($request)
 {
     // pega o ID da URL
     $id = $request->getAttribute('id');
-
+    $idcidade = $request-> getAttribute('idcidade');
     $ClientsController = new \App\Controllers\ClientsController;
-    $ClientsController->edit($id);
+    $ClientsController->edit($id, $idcidade);
 });
-
+$app->get('/estados/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $ClientsController = new \App\Controllers\ClientsController;
+    $ClientsController->states(id);
+});
 // processa o formulário de edição
 $app->post('/edit', function ()
 {

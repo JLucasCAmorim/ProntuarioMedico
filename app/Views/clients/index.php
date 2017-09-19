@@ -18,14 +18,14 @@
              </div>
                 <div class="card-content">
                   <p>Nome: <?php echo $client['nomeCompleto']; ?></p>
-                  <p>Cpf: <?php echo $client['cpf']; ?> RG: <?php echo $client['rg']; ?></p>
+                  <p>Cpf: <?php echo $client['cpf']; ?><span style="color:black;" class="secondary-content"> RG: <?php echo $client['rg']; ?></span></p>
                   <p>Email: <?php echo $client['email']; ?>  </p>
-                  <p>Celular: <?php echo $client['celular']; ?> </p>
-                  <p>Data de Nascimento: <?php echo $client['datanascimento']; ?></p>
+                  <p>Celular: <?php echo $client['celular']; ?><span style="color:black;" class="secondary-content"> Data de Nascimento: <?php echo $client['datanascimento']; ?> </span> </p>
+                  <p></p>
                 </div>
                 <div class="card-action">
                   <center>
-                  <a class="btn btn-primary btn-sm red" href="/edit/<?php echo $client['idclient']; ?>"><i class="small material-icons">edit</i></a>
+                  <a class="btn btn-primary btn-sm red" href="/edit/<?php echo $client['idclient']; ?>/<?php echo $client['idcidade']; ?>"><i class="small material-icons">edit</i></a>
                   <a class="btn btn-primary btn-sm red" href="/remove/<?php echo $client['idclient']; ?>" onclick="return confirm('Tem certeza de que deseja remover?');"><i class="small material-icons">delete</i></a>
                 </center>
                 </div>

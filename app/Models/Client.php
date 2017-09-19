@@ -50,22 +50,22 @@ class Client {
          VALUES(:nomeCompleto, :cpf, :rg, :datanascimento, :naturalidade,
            :nacionalidade, :email, :telefone, :celular,
            :idcidade, :cep, :complemento, :nomePai, :nomeMae, :tipoSangue)";
-        $stmt = $DB->prepare($sql);
-        $stmt->bindParam(':nomeCompleto', $nomeCompleto);
-        $stmt->bindParam(':cpf', $cpf);
-        $stmt->bindParam(':rg', $rg);
-        $stmt->bindParam(':datanascimento', $datanascimento);
-        $stmt->bindParam(':naturalidade', $naturalidade);
-        $stmt->bindParam(':nacionalidade', $nacionalidade);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':telefone', $telefone);
-        $stmt->bindParam(':celular', $celular);
-        $stmt->bindParam(':idcidade', $idcidade);
-        $stmt->bindParam(':cep', $cep);
-        $stmt->bindParam(':complemento', $complemento);
-        $stmt->bindParam(':nomePai', $nomePai);
-        $stmt->bindParam(':nomeMae', $nomeMae);
-        $stmt->bindParam(':tipoSangue', $tipoSangue);
+          $stmt = $DB->prepare($sql);
+          $stmt->bindParam(':nomeCompleto', $nomeCompleto);
+          $stmt->bindParam(':cpf', $cpf);
+          $stmt->bindParam(':rg', $rg);
+          $stmt->bindParam(':datanascimento', $datanascimento);
+          $stmt->bindParam(':naturalidade', $naturalidade);
+          $stmt->bindParam(':nacionalidade', $nacionalidade);
+          $stmt->bindParam(':email', $email);
+          $stmt->bindParam(':telefone', $telefone);
+          $stmt->bindParam(':celular', $celular);
+          $stmt->bindParam(':idcidade', $idcidade);
+          $stmt->bindParam(':cep', $cep);
+          $stmt->bindParam(':complemento', $complemento);
+          $stmt->bindParam(':nomePai', $nomePai);
+          $stmt->bindParam(':nomeMae', $nomeMae);
+          $stmt->bindParam(':tipoSangue', $tipoSangue);
 
         if ($stmt->execute())
         {
@@ -84,10 +84,15 @@ class Client {
     /**
      * Altera no banco de dados um usuário
      */
-    public static function update($idclient,$nomeCompleto, $cpf, $rg, $datanascimento, $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
+    public static function update($idclient,$nomeCompleto, $cpf, $rg,
+     $datanascimento, $naturalidade, $nacionalidade, $email, $telefone,
+     $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
     {
+
         // validação (bem simples, só pra evitar dados vazios)
-        if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)|| empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)|| empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
+        if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)
+        || empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)||
+        empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
          || empty($nomePai)|| empty($nomeMae)|| empty($tipoSangue))  {
 
              $errMsg = "Algum campo está vazio!";
@@ -99,27 +104,25 @@ class Client {
 
         // insere no banco
         $DB = new DB;
-        $sql = "UPDATE clients SET nomeCompleto = :nomeCompleto, cpf = :cpf, rg = :rg, datanascimento = :datanascimento, naturalidade = :naturalidade,
-        nacionalidade = :nacionalidade, email = :email, telefone = :telefone, celular = :celular, idcidade = :idcidade,
-         cep = :cep, complemento = :complemento, nomePai = :nomePai, nomeMae = : nomeMae, tipoSangue = :tipoSangue WHERE idclient = :idclient";
-        $stmt = $DB->prepare($sql);
-        $stmt->bindParam(':nomeCompleto', $nomeCompleto);
-        $stmt->bindParam(':cpf', $cpf);
-        $stmt->bindParam(':rg', $rg);
-        $stmt->bindParam(':datanascimento', $datanascimento);
-        $stmt->bindParam(':naturalidade', $naturalidade);
-        $stmt->bindParam(':nacionalidade', $nacionalidade);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':telefone', $telefone);
-        $stmt->bindParam(':celular', $celular);
-        $stmt->bindParam(':idcidade', $idcidade);
-        $stmt->bindParam(':cep', $cep);
-        $stmt->bindParam(':complemento', $complemento);
-        $stmt->bindParam(':nomePai', $nomePai);
-        $stmt->bindParam(':nomeMae', $nomeMae);
-        $stmt->bindParam(':tipoSangue', $tipoSangue);
+        $sql = "UPDATE clients SET nomeCompleto = :nomeCompleto, cpf = :cpf, rg = :rg, datanascimento = :datanascimento, naturalidade = :naturalidade, nacionalidade = :nacionalidade, email = :email, telefone = :telefone, celular = :celular, idcidade = :idcidade,
+         cep = :cep, complemento = :complemento, nomePai = :nomePai, nomeMae = :nomeMae, tipoSangue = :tipoSangue WHERE idclient = :idclient";
+         $stmt = $DB->prepare($sql);
+         $stmt->bindParam(':nomeCompleto', $nomeCompleto);
+         $stmt->bindParam(':cpf', $cpf);
+         $stmt->bindParam(':rg', $rg);
+         $stmt->bindParam(':datanascimento', $datanascimento);
+         $stmt->bindParam(':naturalidade', $naturalidade);
+         $stmt->bindParam(':nacionalidade', $nacionalidade);
+         $stmt->bindParam(':email', $email);
+         $stmt->bindParam(':telefone', $telefone);
+         $stmt->bindParam(':celular', $celular);
+         $stmt->bindParam(':idcidade', $idcidade);
+         $stmt->bindParam(':cep', $cep);
+         $stmt->bindParam(':complemento', $complemento);
+         $stmt->bindParam(':nomePai', $nomePai);
+         $stmt->bindParam(':nomeMae', $nomeMae);
+         $stmt->bindParam(':tipoSangue', $tipoSangue);
         $stmt->bindParam(':idclient', $idclient, \PDO::PARAM_INT);
-
         if ($stmt->execute())
         {
             return true;

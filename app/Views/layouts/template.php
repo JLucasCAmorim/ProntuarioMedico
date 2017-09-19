@@ -79,6 +79,7 @@
   <script>
   $(document).ready(function(){
     $('.parciente-form')
+    $('#cep').mask('00000-000', {reverse: false});
     $('#cpf').mask('000.000.000-00', {reverse: false});
     $(".dropdown-button").dropdown();
      $('.parallax').parallax();
@@ -109,17 +110,27 @@
    });
   </script>
   <script type="text/javascript">
-  $(document).on('change', '.parciente-form #paciente_estados', function(){
-  $.ajax ({
-  url:'/estados',
-  type: 'GET',
-  dataType: 'script',
-  data: {
-    select_input: '#paciente_cidades',
-    id: $('#paciente_estados option:selected').val()
-  }
-});
-  });
+    function showHint(str) {
+
+      if(str.lenght == 0){
+
+      }else{
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+
+          if (this.readyState == 4 && this.status == 200) {
+            $('#idcidade').empty();
+            $('#idcidade').prop('disabled', false);
+            $('#idcidade').append(this.responseText);
+            $('#idcidade').material_select();
+
+
+          }
+        };
+        xmlhttp.open("GET", "/estados?id="+ str, true);
+        xmlhttp.send();
+      }
+    }
   </script>
   </body>
   </html>

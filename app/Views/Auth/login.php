@@ -6,6 +6,7 @@
          <div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
              <div class="panel panel-default">
                  <div class="panel-body">
+                      
                      <form class="login-form" method="POST" action="/login">
 
                          <div class='row'>

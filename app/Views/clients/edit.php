@@ -99,33 +99,31 @@
     <input type="text" name="tipoSangue" id="tipoSangue" value="<?php echo $client['tipoSangue']; ?>">
   </div>
   <div class="input-field col s6">
-    <select name="idcidade" id="idcidade">
-      <option value="" disabled selected>Escolha a cidade</option>
-      <?php foreach ($cidades as $cidade): ?>
-      <option value="<?php echo $cidade['id']; ?>"><?php echo utf8_encode($cidade['nome']); ?></option>
+    <select id = "#paciente_estados" onChange="showHint(this.value)">
+      <option value="" disabled selected>Escolha o Estado</option>
+      <?php foreach ($estados as $estado): ?>
+      <option value="<?php echo $estado['id']; ?>">
+        <?php echo utf8_encode($estado['nome']); ?>
+      </option>
       <?php endforeach; ?>
     </select>
+  <label for="estado">Estado: </label>
 
-  <label for="idcidades">Cidade: </label>
 </div>
   </div>
   <div class="row">
 
     <div class="input-field col s12">
-
-      <select id = "#paciente_estados">
-        <option value="" disabled selected>Escolha o Estado</option>
-        <?php foreach ($estados as $estado): ?>
-        <option value="<?php echo $estado['id']; ?>">
-          <?php echo utf8_encode($estado['nome']); ?>
-        </option>
-        <?php endforeach; ?>
+      <select name="idcidade" id="idcidade">
+        <option value="<?php echo $cidadeclient['id'] ?>"><?php echo utf8_encode($cidadeclient['nome']) ?></option>
       </select>
-    <label for="estado">Estado: </label>
+
+    <label for="idcidades">Cidade: </label>
+
   </div>
   </div>
 
-  <input type="hidden" name="id" value="<?php echo $client['id']; ?>">
+  <input type="hidden" name="idclient" id="idclient" value="<?php echo $client['idclient']; ?>">
 <div class="fixed-action-btn horizontal">
     <button class="btn-floating btn-large #ff1744 red accent-3" type="submit"><i class="large material-icons">edit</i></button>
   </div>
