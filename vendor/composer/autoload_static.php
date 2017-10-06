@@ -77,6 +77,13 @@ class ComposerStaticInitc70414d53ca557da7151bc4a3a37c2ee
     );
 
     public static $prefixesPsr0 = array (
+        'V' => 
+        array (
+            'Valitron' => 
+            array (
+                0 => __DIR__ . '/..' . '/vlucas/valitron/src',
+            ),
+        ),
         'T' => 
         array (
             'Twig_' => 

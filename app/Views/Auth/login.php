@@ -1,9 +1,9 @@
   <div class="section"></div>
-  <center>
-  <div class="container">
-   <div class="row">
-
-         <div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+  
+   <center>
+<div class="container">
+<div class="section"><h4 class="red-text">DoctorPront</h4></div>
+   <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE; ">
              <div class="panel panel-default">
                  <div class="panel-body">
                       
@@ -62,10 +62,11 @@
                    </div>
              </div>
          </div>
-
+     
      </div>
-  </div>
-  <a class="pink-text">
+     <a class="pink-text">
      Esqueceu sua senha?
-  </a>
+  </a>  
+  </div>
+  
   </center>

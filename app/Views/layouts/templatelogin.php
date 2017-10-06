@@ -12,62 +12,15 @@
 </head>
 <body>
 
-<div class="row">
-<div class="col s12 m4 l3">
-<ul id="slide-out" class="#f1f8e9 light-green lighten-5 side-nav fixed">
-<?php if ((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']))): ?>
-        <center>
-        <div class="medicoimg">  
-        <img src="/public/images/medico2.png" alt="default" class="circle responsive-img valign profile-image-login" style="height:150px; weight: 150px;">
-        <li><h5 class="white-text">DoctorPront</h5></li>  
-        </div>
-       
-      </center>
-        
-     
-        <li><a href="/pacientes">Pacientes</a></li>
-        <li>
-            <a class="dropdown-button" href="#!" data-activates="dropdown2">
-                Logout <span class="caret"></span>
-            </a>
-
-            <ul id="dropdown2" class="dropdown-content" role="menu">
-                <li>
-                    <a style="color: #000000;" href="/logout"
-                        onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                        Sair
-                    </a>
-
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </li>
-                <?php endif; ?>
-    </ul>
-</div>
-
-<div class="col s12 m8 l9" id="main">
-<nav class="#c62828 red darken-3" role="navigation">
-
-    <a href="#" data-activates="slide-out" class="button-collapse "><i class="icon-white material-icons">menu</i></a>
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="/home" class="brand-logo"><?php echo $pagetitle; ?></a>
-      <ul class="right hide-on-med-and-down">
-      
-      </ul>
-    </div>
-  </nav>
-        <!-- Teal page content  -->
-     
   <div class="container">
     <div class="section">
     <?php if (isset($viewName)) { $path = viewsPath() . $viewName . '.php'; if (file_exists($path)) { require_once $path; } } ?>
     </div>
   </div>
   
-  </div>
+  
 
+  </div>
 
   <!--  Scripts-->
   <script src="/public/js/jquery.min.js"></script>

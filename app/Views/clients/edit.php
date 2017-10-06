@@ -1,3 +1,4 @@
+  <span><?php echo $erroMsg;?></span>
 <form class="paciente-form col s12" action="/edit" method="post">
   <div class="row">
 
@@ -50,7 +51,7 @@
 <div class="input-field col s6">
   <label for="celular">Celular: </label>
 
-  <input type="text" name="celular" id="celular" value="<?php echo $client['celular']; ?>" >
+  <input type="text" maxlength="9" name="celular" id="celular" value="<?php echo $client['celular']; ?>" >
 </div>
 </div>
 <div class="row">

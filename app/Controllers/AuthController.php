@@ -8,9 +8,12 @@ class AuthController {
   public function index()
   {
 
-      if(!empty($_COOKIE['login'])){
-        \App\View::make('Home','home/index');
-      }
+    session_start();
+    if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
+    {
+      
+      \App\View::make('Home','home/index');
+     }
       else{
       \App\View::make('Login','Auth/login');
       }
@@ -27,21 +30,19 @@ class AuthController {
         $password = isset($_POST['password']) ? $_POST['password'] : null;
 
         $users = User::select($email, $password);
-
+       
 
         header('Location: /home');
         exit;
 
     }
     public function logout(){
-
-      if(isset($_COOKIE['login'])){
-
-        setcookie("login","");
+        session_start();
+        session_destroy();
         header('Location: /');
         exit;
 
-      }
+      
 
     }
 

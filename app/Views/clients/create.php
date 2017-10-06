@@ -1,11 +1,12 @@
 <form class="paciente-form col s12" action="/add" method="post">
-  <span><?php echo $errMsg;?></span>
+  <span><?php echo $erroMsg;?></span>
   <div class="row">
 
     <div class="input-field col s12">
     <label for="nomeCompleto">Nome Completo: </label>
 
-    <input type="text" name="nomeCompleto" id="nomeCompleto" required>
+    <input type="text" name="nomeCompleto" id="nomeCompleto" value = "<?php echo $dados['nomeCompleto'] ?>" required >
+    
     </div>
   </div>
   <div class="row">
@@ -13,25 +14,27 @@
     <div class="input-field col s6">
       <label for="cpf">CPF: </label>
 
-      <input type="text" name="cpf" id="cpf" required>
-    </div>
+      <input type="text" name="cpf" id="cpf"  value = "<?php echo $dados['cpf'] ?>" required >
+      <span class="red-text"><?php echo $cpf_error ?></span>
+     </div>
     <div class="input-field col s6">
       <label for="rg">RG: </label>
 
-      <input type="text" name="rg" id="rg" required>
+      <input type="text" name="rg" id="rg"  value = "<?php echo $dados['rg'] ?>" required >
+      <span class="red-text"><?php echo $rg_error ?></span>
     </div>
     </div>
     <div class="row">
 
       <div class="input-field col s6">
-        <label for="naturalidade">Naturalidade: </label required>
+        <label for="naturalidade">Naturalidade: </label >
 
-        <input type="text" name="naturalidade" id="naturalidade">
+        <input type="text" name="naturalidade" id="naturalidade"  value = "<?php echo $dados['naturalidade'] ?>">
       </div>
       <div class="input-field col s6">
-        <label for="nacionalidade">Nacionalidade: </label required>
+        <label for="nacionalidade">Nacionalidade: </label >
 
-        <input type="text" name="nacionalidade" id="nacionalidade" >
+        <input type="text" name="nacionalidade" id="nacionalidade"  value = "<?php echo $dados['nacionalidade'] ?>">
       </div>
       </div>
   <div class="row">
@@ -39,19 +42,20 @@
     <div class="input-field col s12">
     <label for="email">Email: </label>
 
-    <input type="email" name="email" id="email" required>
-</div>
+    <input type="email" name="email" id="email"  value = "<?php echo $dados['email'] ?>" required>
+  </div>
 </div>
 <div class="row">
 <div class="input-field col s6">
   <label for="telefone">Telefone: </label>
 
-  <input type="text" name="telefone" id="telefone">
+  <input type="text" name="telefone" id="telefone"  value = "<?php echo $dados['telefone'] ?>">
 </div>
 <div class="input-field col s6">
   <label for="celular">Celular: </label>
 
-  <input type="text" name="celular" id="celular" required >
+  <input type="text" name="celular" id="celular"  value = "<?php echo $dados['celular'] ?>" required >
+  
 </div>
 </div>
 <div class="row">
@@ -59,13 +63,13 @@
   <div class="input-field col s6">
   <label for="complemento">Complemento: </label>
 
-  <input type="text" name="complemento" id="complemento">
+  <input type="text" name="complemento" id="complemento"  value = "<?php echo $dados['complemento'] ?>" >
 </div>
 
   <div class="input-field col s6">
   <label for="cep">Cep: </label>
 
-  <input type="text" name="cep" id="cep" required>
+  <input type="text" name="cep" id="cep"  value = "<?php echo $dados['cep'] ?> required" >
 </div>
 </div>
 <div class="row">
@@ -73,7 +77,7 @@
   <div class="input-field col s12">
   <label for="nomePai">Nome do pai: </label>
 
-  <input type="text" name="nomePai" id="nomePai" required>
+  <input type="text" name="nomePai" id="nomePai"  value = "<?php echo $dados['nomePai'] ?>" required >
 </div>
 </div>
 <div class="row">
@@ -81,7 +85,7 @@
   <div class="input-field col s12">
   <label for="nomeMae">Nome da mãe: </label>
 
-  <input type="text" name="nomeMae" id="nomeMae" required>
+  <input type="text" name="nomeMae" id="nomeMae"  value = "<?php echo $dados['nomeMae'] ?>" required >
 </div>
 </div>
 <div class="row">
@@ -89,7 +93,7 @@
   <div class="input-field col s12">
     <label for="datanascimento">Data de Nascimento: </label>
 
-    <input type="text" name="datanascimento" id="datanascimento" class="datepicker" required>
+    <input type="text" name="datanascimento" id="datanascimento" class="datepicker"  value = "<?php echo $dados['datanascimento'] ?>" required >
   </div>
   </div>
   <div class="row">
@@ -97,7 +101,7 @@
     <div class="input-field col s6">
     <label for="tipoSangue">Tipo Sanguineo: </label>
 
-    <input type="text" name="tipoSangue" id="tipoSangue" required>
+    <input type="text" name="tipoSangue" id="tipoSangue"  value = "<?php echo $dados['tipoSangue'] ?>" >
   </div>
 
   <div class="input-field col s6">
@@ -116,14 +120,16 @@
   <div class="row">
 
     <div class="input-field col s12">
-      <select name="idcidade" disabled id="idcidade">
+    
+      <select name="idcidade" disabled id="idcidade" >
         <option>Escolha a cidade</option>
 
       </select>
-
+     
     <label for="idcidades">Cidade: </label>
-
+   
   </div>
+  <span class="red-text"><?php echo $cidade_error ?></span>
   </div>
 
 <div class="fixed-action-btn horizontal">

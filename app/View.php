@@ -20,8 +20,14 @@ class View
     {
         // cria as variáveis do array $customVars
         extract($customVars);
-
-        // inclui o template, que vai processar a view na variável $viewName
+       if($viewName == "Auth/login"){
+        require_once viewsPath() . 'layouts/templatelogin.php';
+       }
+       else{
         require_once viewsPath() . 'layouts/template.php';
+       }
+        // inclui o template, que vai processar a view na variável $viewName
+        
     }
 }
+

@@ -20,7 +20,54 @@ class Client {
 
         return $users;
     }
+    public static function cpf($cpf) {
+        $where = ''; if (!empty($cpf)) { $where = 'WHERE cpf = :cpf'; }
+        $sql = sprintf("SELECT cpf FROM clients %s ORDER BY cpf ASC", $where);
+        $DB = new DB; $stmt = $DB->prepare($sql);
+   
+           if (!empty($where))
+           {
+               $stmt->bindParam(':cpf', $cpf, \PDO::PARAM_INT);
+           }
+   
+           $stmt->execute();
+   
+           $cpf = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+           
+           if(count($cpf) == 1){
+               return true;
+           }
+           else{
+            return false;
+           }
+           
+           
+       }
+       public static function rg($rg) {
+        $where = ''; if (!empty($rg)) { $where = 'WHERE rg = :rg'; }
+        $sql = sprintf("SELECT rg FROM clients %s", $where);
+        $DB = new DB; $stmt = $DB->prepare($sql);
+   
+        if (!empty($where))
+        {
+            $stmt->bindParam(':rg', $rg, \PDO::PARAM_INT);
+        }
+   
+           $stmt->execute();
+   
+           $rg = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+           
+          
 
+           if(count($rg) == 1){
+               return true;
+           }
+           else{
+            return false;
+           }
+           
+           
+       }
 
     /**
      * Salva no banco de dados um novo usuário
@@ -28,14 +75,7 @@ class Client {
     public static function save($nomeCompleto, $cpf, $rg, $datanascimento, $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
     {
         // validação (bem simples, só pra evitar dados vazios)
-        if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)|| empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)|| empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
-         || empty($nomePai)|| empty($nomeMae)|| empty($tipoSangue))
-        {
-
-            echo"<script language='javascript' type='text/javascript'>alert('Volte e preencha todos os campos');window.location.href='/add';</script>";
-            die();
-            return false;
-        }
+      
 
         // a data vem no formato dd/mm/YYYY
         // então precisamos converter para YYYY-mm-dd
@@ -73,8 +113,7 @@ class Client {
         }
         else
         {
-            echo "Erro ao cadastrar";
-            print_r($stmt->errorInfo());
+            
             return false;
         }
     }
@@ -90,13 +129,7 @@ class Client {
     {
 
         // validação (bem simples, só pra evitar dados vazios)
-        if (empty($nomeCompleto) || empty($cpf) || empty($rg) || empty($datanascimento)
-        || empty($naturalidade)|| empty($nacionalidade)|| empty($email)|| empty($telefone)||
-        empty($celular)|| empty($idcidade)|| empty($cep)|| empty($complemento)
-         || empty($nomePai)|| empty($nomeMae)|| empty($tipoSangue))  {
-
-             $errMsg = "Algum campo está vazio!";
-        }
+     
 
         // a data vem no formato dd/mm/YYYY
         // então precisamos converter para YYYY-mm-dd
