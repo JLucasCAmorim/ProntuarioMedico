@@ -5,7 +5,7 @@ class Client {
    /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */
    public static function selectAll($idclient = null) {
      $where = ''; if (!empty($idclient)) { $where = 'WHERE idclient = :idclient'; }
-     $sql = sprintf("SELECT idclient, nomeCompleto, cpf, rg, datanascimento, naturalidade, nacionalidade, email, telefone, celular, idcidade, cep, complemento, nomePai, nomeMae, tipoSangue FROM clients %s ORDER BY nomeCompleto ASC", $where);
+     $sql = sprintf("SELECT idclient, nome, cpf, rg, datanascimento, naturalidade, nacionalidade, email, telefone, celular, idcidade, cep, complemento, nomePai, nomeMae, tipoSangue FROM clients %s ORDER BY nome ASC", $where);
      $DB = new DB; $stmt = $DB->prepare($sql);
 
         if (!empty($where))
@@ -72,7 +72,7 @@ class Client {
     /**
      * Salva no banco de dados um novo usuário
      */
-    public static function save($nomeCompleto, $cpf, $rg, $datanascimento, $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
+    public static function save($nome, $cpf, $rg, $datanascimento, $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
     {
         // validação (bem simples, só pra evitar dados vazios)
       
@@ -84,14 +84,14 @@ class Client {
         // insere no banco
         $DB = new DB;
         $sql = "INSERT INTO clients
-        (nomeCompleto, cpf, rg, datanascimento, naturalidade,
+        (nome, cpf, rg, datanascimento, naturalidade,
         nacionalidade, email, telefone, celular, idcidade,
          cep, complemento, nomePai, nomeMae, tipoSangue)
-         VALUES(:nomeCompleto, :cpf, :rg, :datanascimento, :naturalidade,
+         VALUES(:nome, :cpf, :rg, :datanascimento, :naturalidade,
            :nacionalidade, :email, :telefone, :celular,
            :idcidade, :cep, :complemento, :nomePai, :nomeMae, :tipoSangue)";
           $stmt = $DB->prepare($sql);
-          $stmt->bindParam(':nomeCompleto', $nomeCompleto);
+          $stmt->bindParam(':nome', $nome);
           $stmt->bindParam(':cpf', $cpf);
           $stmt->bindParam(':rg', $rg);
           $stmt->bindParam(':datanascimento', $datanascimento);
@@ -113,7 +113,8 @@ class Client {
         }
         else
         {
-            
+            echo "Erro ao cadastrar";
+            print_r($stmt->errorInfo());
             return false;
         }
     }
@@ -123,7 +124,7 @@ class Client {
     /**
      * Altera no banco de dados um usuário
      */
-    public static function update($idclient,$nomeCompleto, $cpf, $rg,
+    public static function update($idclient,$nome, $cpf, $rg,
      $datanascimento, $naturalidade, $nacionalidade, $email, $telefone,
      $celular, $idcidade, $cep, $complemento, $nomePai, $nomeMae, $tipoSangue)
     {
@@ -137,10 +138,10 @@ class Client {
 
         // insere no banco
         $DB = new DB;
-        $sql = "UPDATE clients SET nomeCompleto = :nomeCompleto, cpf = :cpf, rg = :rg, datanascimento = :datanascimento, naturalidade = :naturalidade, nacionalidade = :nacionalidade, email = :email, telefone = :telefone, celular = :celular, idcidade = :idcidade,
+        $sql = "UPDATE clients SET nome = :nome, cpf = :cpf, rg = :rg, datanascimento = :datanascimento, naturalidade = :naturalidade, nacionalidade = :nacionalidade, email = :email, telefone = :telefone, celular = :celular, idcidade = :idcidade,
          cep = :cep, complemento = :complemento, nomePai = :nomePai, nomeMae = :nomeMae, tipoSangue = :tipoSangue WHERE idclient = :idclient";
          $stmt = $DB->prepare($sql);
-         $stmt->bindParam(':nomeCompleto', $nomeCompleto);
+         $stmt->bindParam(':nome', $nome);
          $stmt->bindParam(':cpf', $cpf);
          $stmt->bindParam(':rg', $rg);
          $stmt->bindParam(':datanascimento', $datanascimento);

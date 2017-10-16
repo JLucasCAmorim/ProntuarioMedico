@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-
+use \App\Models\Agendamento;
 class HomeController {
 
   /** * Listagem de usuários */
@@ -10,8 +10,9 @@ class HomeController {
   
     if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
     {
-     
-      \App\View::make('Home','home/index');
+      $agendamentos = Agendamento::select(); 
+      \App\View::make('Home','home/index', [ 'agendamentos' => $agendamentos,
+      ]);
      }
     else{
     \App\View::make('Login','Auth/login');
