@@ -23,7 +23,8 @@ nav ul a:hover {
 @media only screen and (max-width : 600px) {
   nav .brand-logo {
     color: white;
-    font-size: 25px;
+    font-size: 15px;
+    font-weight: bold !important;
   }
 }
 p {
@@ -70,10 +71,10 @@ i.icon-blue {
     color: teal;
 }
 i.icon-white {
-    color: white;
+    color: white !important;
 }
 i.icon-red {
-    color: red;
+    color: red !important;
 }
 footer.page-footer {
   margin: 0;

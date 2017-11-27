@@ -10,6 +10,7 @@
                      <form class="login-form" method="POST" action="/login">
 
                          <div class='row'>
+                         
                          <div class="form-group">
 
                              <div class="input-field col s12">
@@ -64,7 +65,7 @@
          </div>
      
      </div>
-     <a class="pink-text">
+     <a class="red-text">
      Esqueceu sua senha?
   </a>  
   </div>

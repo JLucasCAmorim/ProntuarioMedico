@@ -1,6 +1,7 @@
 <?php $title = 'Listagem'; ?>
-
-
+<?php if ((!empty ($_SESSION['mensagem']))): ?>
+<div class="card-panel teal lighten-2 white-text"><?php echo  $_SESSION['mensagem']; unset($_SESSION['mensagem']); ?></div>
+<?php endif; ?>
 <div class="fixed-action-btn horizontal">
 
 <a class="btn-floating btn-large #ff1744 red accent-3" href="/add"><i class="large material-icons ">add</i></a>
@@ -17,7 +18,7 @@
              <img src="public/images/pacientes.png" alt="default" class="circle responsive-img valign profile-image-login" style="height:150px; weight: 150px;">
              </div>
                 <div class="card-content black-text">
-                  <p>Nome: <?php echo $client['nomeCompleto']; ?></p>
+                  <p>Nome: <?php echo $client['nome']; ?></p>
                   <p>CPF: <?php echo $client['cpf']; ?><span class="secondary-content black-text"> RG: <?php echo $client['rg']; ?></span></p>
                   <p>Email: <?php echo $client['email']; ?>  </p>
                   <p>Celular: <?php echo $client['celular']; ?>  </p>
@@ -39,8 +40,15 @@
 <?php else: ?>
 
 
-
-Nenhum usuário cadastrado
+<div class="container">
+<div class="section"></div>
+<div class="section"></div>
+<div class="section"></div>
+<div class="section">
+<center>
+ <h5 class="red-text">Nenhum paciente cadastrado</h5>
+</center>
+</div>
 
 
 <?php endif; ?>

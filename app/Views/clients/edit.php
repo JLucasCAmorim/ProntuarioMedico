@@ -3,9 +3,9 @@
   <div class="row">
 
     <div class="input-field col s12">
-    <label for="nomeCompleto">Nome Completo: </label>
+    <label for="nome">Nome Completo: </label>
 
-    <input type="text" name="nomeCompleto" id="nomeCompleto" value="<?php echo $client['nomeCompleto']; ?>">
+    <input type="text" name="nome" id="nome" value="<?php echo $client['nome']; ?>">
     </div>
   </div>
   <div class="row">
@@ -100,7 +100,7 @@
     <input type="text" name="tipoSangue" id="tipoSangue" value="<?php echo $client['tipoSangue']; ?>">
   </div>
   <div class="input-field col s6">
-    <select id = "#paciente_estados" onChange="showHint(this.value)">
+    <select id = "idestado" onChange="showHint(this.value)">
       <option value="" disabled selected>Escolha o Estado</option>
       <?php foreach ($estados as $estado): ?>
       <option value="<?php echo $estado['id']; ?>">

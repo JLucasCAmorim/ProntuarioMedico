@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
-
+use \App\Models\Agendamento;
+use \App\Models\User;
 class HomeController {
 
   /** * Listagem de usuários */
@@ -8,14 +9,37 @@ class HomeController {
   {
     session_start();
   
-    if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
+    if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']) && (!empty ($_SESSION['medico']))))
     {
-     
-      \App\View::make('Home','home/index');
+  
+      $agendamentos = Agendamento::select(); 
+      \App\View::make('Home','home/index', [ 'agendamentos' => $agendamentos
+      ]);
      }
+     elseif((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']) && (!empty ($_SESSION['admin']))))
+     {
+   
+       $users = User::selectAll(); 
+       \App\View::make('Usuários','home/users', [ 'users' => $users
+       ]);
+      }
     else{
     \App\View::make('Login','Auth/login');
     }
+  }
+  public function history(){
+    session_start();
+    
+      if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']) && (!empty ($_SESSION['medico']))))
+      {
+    
+        $agendamentos = Agendamento::selectUser(); 
+        \App\View::make('Histórico','home/history', [ 'agendamentos' => $agendamentos
+        ]);
+       }
+       else{
+        \App\View::make('Login','Auth/login');
+        }
   }
 
 }

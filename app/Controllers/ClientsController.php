@@ -9,7 +9,7 @@ class ClientsController {
   public function index()
   {
     session_start();
-    if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
+    if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])) && (!empty ($_SESSION['admin'])))
     {
     $clients = Client::selectAll(); 
     \App\View::make('Pacientes','clients/index', [ 'clients' => $clients,
@@ -27,7 +27,7 @@ class ClientsController {
     public function create()
     {
         session_start();
-        if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
+        if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])) && (!empty ($_SESSION['admin'])))
         {
         $estados = State::selectAll();
         $cidades = City::selectAll();
@@ -50,7 +50,7 @@ class ClientsController {
         $cidades = City::selectAll();
         $dados = $_POST;
         // pega os dados do formuário
-        $nomeCompleto = isset($_POST['nomeCompleto']) ? $_POST['nomeCompleto'] : null;
+        $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
         $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
         $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
         $naturalidade = isset($_POST['naturalidade']) ? $_POST['naturalidade'] : null;
@@ -114,10 +114,13 @@ class ClientsController {
             'estados' => $estados, 'cidades'=> $cidades]);
         }
         
-        if (Client::save($nomeCompleto, $cpf, $rg, $datanascimento,
+        if (Client::save($nome, $cpf, $rg, $datanascimento,
          $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade,
           $cep, $complemento, $nomePai, $nomeMae, $tipoSangue))
         {
+            session_start();
+            $sucessMsg = "Cadastro adicionado com sucesso!";
+            $_SESSION['mensagem'] = $sucessMsg;
             header('Location: /pacientes');
             exit;
         }
@@ -132,7 +135,7 @@ class ClientsController {
     public function edit($id, $idcidade)
     {   
         session_start();
-        if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])))
+        if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])) && (!empty ($_SESSION['admin'])))
         {
         $client = Client::selectAll($id)[0];
         $cidadeclient = City::selectAll($idcidade)[0];
@@ -155,7 +158,7 @@ class ClientsController {
     {
         // pega os dados do formuário
         $idclient = $_POST['idclient'];
-        $nomeCompleto = isset($_POST['nomeCompleto']) ? $_POST['nomeCompleto'] : null;
+        $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
         $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
         $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
         $naturalidade = isset($_POST['naturalidade']) ? $_POST['naturalidade'] : null;
@@ -173,23 +176,19 @@ class ClientsController {
 
 
 
-        if (Client::update($idclient, $nomeCompleto, $cpf, $rg, $datanascimento,
+        if (Client::update($idclient, $nome, $cpf, $rg, $datanascimento,
          $naturalidade, $nacionalidade, $email, $telefone, $celular, $idcidade,
           $cep, $complemento, $nomePai, $nomeMae, $tipoSangue))
         {
-            header('location: /pacientes');
+            session_start();
+            $sucessMsg = "Cadastro editado com sucesso!";
+            $_SESSION['mensagem'] = $sucessMsg;
+            header('Location: /pacientes');
             exit;
+        
+                
         }
-        else{
-          $client = Client::selectAll($idclient)[0];
-          $cidadeclient = City::selectAll($idcidade)[0];
-          $estados = State::selectAll();
-          \App\View::make('Editando Paciente','clients/edit',[
-              'client' => $client,
-              'estados' => $estados, 'cidadeclient' => $cidadeclient,
-              'erroMsg' => $erroMsg
-          ]);
-        }
+        
     }
 
 
@@ -200,6 +199,9 @@ class ClientsController {
     {
         if (Client::remove($id))
         {
+            session_start();
+            $sucessMsg = "Cadastro removido com sucesso!";
+            $_SESSION['mensagem'] = $sucessMsg;
             header('Location: /pacientes');
             exit;
         }
