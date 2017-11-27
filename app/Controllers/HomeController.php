@@ -1,7 +1,10 @@
 <?php
 namespace App\Controllers;
 use \App\Models\Agendamento;
+<<<<<<< HEAD
 use \App\Models\User;
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
 class HomeController {
 
   /** * Listagem de usuários */
@@ -11,9 +14,14 @@ class HomeController {
   
     if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']) && (!empty ($_SESSION['medico']))))
     {
+<<<<<<< HEAD
   
       $agendamentos = Agendamento::select(); 
       \App\View::make('Home','home/index', [ 'agendamentos' => $agendamentos
+=======
+      $agendamentos = Agendamento::select(); 
+      \App\View::make('Home','home/index', [ 'agendamentos' => $agendamentos,
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
       ]);
      }
      elseif((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']) && (!empty ($_SESSION['admin']))))

@@ -17,7 +17,11 @@
   <div class="row">
     <div class="input-field col s6">
       <select id="idmedico" name="idmedico" onChange="showHint(this.value)">
+<<<<<<< HEAD
         <option value="<?php echo $agendamento['idmedico']; ?>" selected><?php echo $agendamento['nomeCompleto']; ?></option>
+=======
+        <option value="<?php echo $agendamento['idmedico']; ?>" disabled selected><?php echo $agendamento['nomeCompleto']; ?></option>
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         <?php foreach ($medicos as $medico): ?>
         <option value="<?php echo $medico['idmedico']; ?>">
           <?php echo $medico['nomeCompleto']; ?>

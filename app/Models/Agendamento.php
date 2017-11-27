@@ -5,11 +5,20 @@ class Agendamento {
    /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */
    public static function selectAll($id = null) {
     $where = ''; if (!empty($id)) { $where = 'WHERE agendamento.id = :id'; }
+<<<<<<< HEAD
     
     $sql = sprintf("SELECT agendamento.id, agendamento.data, agendamento.hora, agendamento.idclient, agendamento.idmedico, clients.nome, medicos.nomeCompleto FROM  agendamento  
      INNER JOIN clients ON agendamento.idclient = clients.idclient
      INNER JOIN medicos ON agendamento.idmedico = medicos.idmedico ORDER BY id DESC ", $where);
      $DB = new DB; $stmt = $DB->prepare($sql);
+=======
+   
+     $sql = sprintf("SELECT agendamento.id, agendamento.data, agendamento.hora, agendamento.idclient, agendamento.idmedico, clients.nome, medicos.nomeCompleto FROM  agendamento %s  
+     INNER JOIN clients ON agendamento.idclient = clients.idclient
+     INNER JOIN medicos ON agendamento.idmedico = medicos.idmedico ORDER BY id DESC ", $where);
+     $DB = new DB; $stmt = $DB->prepare($sql);
+
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         if (!empty($where))
         {
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
@@ -26,10 +35,17 @@ class Agendamento {
     public static function select($id = null) {
     $email = $_SESSION['login'];
     $where = ''; if (!empty($id)) { $where = 'WHERE agendamento.id = :id'; }
+<<<<<<< HEAD
     $data = date('d/m/Y');   
      $sql = sprintf("SELECT agendamento.id, agendamento.data, agendamento.hora, agendamento.idclient, agendamento.idmedico, clients.nome, medicos.nomeCompleto FROM  agendamento %s  
      INNER JOIN clients ON agendamento.idclient = clients.idclient
      INNER JOIN medicos ON agendamento.idmedico = medicos.idmedico AND '$email' = medicos.email AND agendamento.data = '$data' ORDER BY id DESC ", $where);
+=======
+        
+     $sql = sprintf("SELECT agendamento.id, agendamento.data, agendamento.hora, agendamento.idclient, agendamento.idmedico, clients.nome, medicos.nomeCompleto FROM  agendamento %s  
+     INNER JOIN clients ON agendamento.idclient = clients.idclient
+     INNER JOIN medicos ON agendamento.idmedico = medicos.idmedico AND '$email' = medicos.email ORDER BY id DESC ", $where);
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
      $DB = new DB; $stmt = $DB->prepare($sql);
 
         if (!empty($where))
@@ -45,6 +61,7 @@ class Agendamento {
 
         return $agendamentos;
     }
+<<<<<<< HEAD
     public static function selectUser($id = null) {
         $email = $_SESSION['login'];
         $where = ''; if (!empty($id)) { $where = 'WHERE agendamento.id = :id'; }
@@ -67,6 +84,9 @@ class Agendamento {
     
             return $agendamentos;
         }
+=======
+
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
     /**
      * Salva no banco de dados um novo usuário
      */
@@ -120,8 +140,14 @@ class Agendamento {
 
         // insere no banco
         $DB = new DB;
+<<<<<<< HEAD
         $sql = "UPDATE agendamento SET data = :data, hora = :hora ,idclient = :idclient, idmedico = :idmedico WHERE id = :id";
          $stmt = $DB->prepare($sql);
+=======
+        $sql = "UPDATE agendamento SET data = :data,hora = :hora ,idclient = :idclient
+         idmedico = :idmedico WHERE id = :id";
+          $stmt = $DB->prepare($sql);
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
           $stmt->bindParam(':data', $data);
           $stmt->bindParam(':hora', $hora);
           $stmt->bindParam(':idclient', $idclient);

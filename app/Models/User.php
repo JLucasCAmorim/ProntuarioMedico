@@ -6,7 +6,10 @@ class User {
    /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */
    public static function select($email, $password) {
     session_start();  
+<<<<<<< HEAD
     
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
     $password = md5($password);
     $sql = sprintf("SELECT * FROM users WHERE email = '$email' AND password = '$password'") or die("erro ao selecionar");
     $DB = new DB; $stmt = $DB->prepare($sql);
@@ -21,7 +24,11 @@ class User {
         if (count($users) == 1){
           $_SESSION['login'] = $email;
           $_SESSION['senha'] = $password;
+<<<<<<< HEAD
           if($role == 'Admin'){
+=======
+          if($role == 'admin'){
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
             $_SESSION['admin'] = $role;
           }
           else{
@@ -39,6 +46,7 @@ class User {
           die();
         }
     }
+<<<<<<< HEAD
      
     public static function selectAll($id = null) {
         $where = ''; if (!empty($id)) { $where = 'WHERE id = :id'; }
@@ -58,6 +66,8 @@ class User {
            return $users;
        }
    
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
     public static function email($email) {
       $where = ''; if (!empty($email)) { $where = 'WHERE email = :email'; }
       $sql = sprintf("SELECT email FROM users %s", $where);
@@ -118,6 +128,7 @@ class User {
             return false;
         }
     }
+<<<<<<< HEAD
    
     public static function remove($id)
     {
@@ -145,5 +156,7 @@ class User {
             return false;
         }
     }
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
 
 }

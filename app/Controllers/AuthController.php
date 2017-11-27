@@ -33,10 +33,17 @@ class AuthController {
         session_start();
         if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])) && (!empty ($_SESSION['admin'])))
         {
+<<<<<<< HEAD
             
              \App\View::make('Cadastrando Usuário','Auth/registro');
         
         }
+=======
+       
+
+        \App\View::make('Cadastrando Usuário','Auth/registro');
+          }
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
           else{
             \App\View::make('Login','Auth/login');
         }
@@ -105,6 +112,7 @@ class AuthController {
         
     }
 
+<<<<<<< HEAD
     public function remove($id)
     {
         if (User::remove($id))
@@ -116,6 +124,8 @@ class AuthController {
             exit;
         }
     }
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
     /**
      * Processa o formulário de criação de usuário
      */

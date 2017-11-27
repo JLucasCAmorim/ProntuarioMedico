@@ -114,9 +114,16 @@ class AgendamentoController {
         session_start();
         if((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha'])) && (!empty ($_SESSION['admin'])))
         {
+<<<<<<< HEAD
         $agendamento = Agendamento::selectAll($id)[0];
         $medicos = Medico::selectAll();
         $pacientes = Client::selectAll();
+=======
+        $agendamento = Agendamento::select($id)[0];
+      
+        $medico = Medico::selectAll();
+        $paciente = Client::selectAll();
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         \App\View::make('Editando Agendamento','agendamentos/edit',[
             'medicos' => $medicos, 'pacientes' => $pacientes,'agendamento' => $agendamento
         ]);
@@ -139,10 +146,16 @@ class AgendamentoController {
         $idclient = isset($_POST['idclient']) ? $_POST['idclient'] : null;
         $idmedico = isset($_POST['idmedico']) ? $_POST['idmedico'] : null;
        
+<<<<<<< HEAD
        
 
 
         if (Agendamento::update($id, $data, $hora, $idclient, $idmedico))
+=======
+
+
+        if (Medico::update($id, $data, $hora, $idclient, $idmedico))
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         {
             session_start();
             $sucessMsg = "Agendamento editado com sucesso!";

@@ -26,7 +26,10 @@ $app->post('/registrar', function ()
     $AuthController = new \App\Controllers\AuthController;
     $AuthController->store();
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
 $app->post('/logout', function ()
 {
     $AuthController = new \App\Controllers\AuthController;
@@ -180,6 +183,7 @@ $app->get('/remove/medico/{id}', function ($request)
 {
     // pega o ID da URL
     $id = $request->getAttribute('id');
+<<<<<<< HEAD
 
     $MedicoController = new \App\Controllers\MedicoController;
     $MedicoController->remove($id);
@@ -214,5 +218,19 @@ $app->post('/add/atendimento', function ()
 {
     $AtendimentoController = new \App\Controllers\AtendimentoController;
     $AtendimentoController->store();
+=======
+
+    $MedicoController = new \App\Controllers\MedicoController;
+    $MedicoController->remove($id);
+});
+// remove um Agendamento
+$app->get('/remove/agendamento/{id}', function ($request)
+{
+    // pega o ID da URL
+    $id = $request->getAttribute('id');
+
+    $AgendamentoController = new \App\Controllers\AgendamentoController;
+    $AgendamentoController->remove($id);
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
 });
 $app->run();

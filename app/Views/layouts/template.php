@@ -27,6 +27,7 @@
           </div>
 
         </center>
+<<<<<<< HEAD
         <?php if ((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']))&& (!empty ($_SESSION['medico']))): ?>
         <li>
           <a href="/home"><i class="material-icons icon-red">home</i>Home</a>
@@ -42,11 +43,23 @@
         </li>
         <li>
           <a href="/pacientes"><i class="material-icons icon-red">face</i>Pacientes</a>
+=======
+        <li>
+          <a href="/home"><i class="material-icons icon-red">home</i>Home</a>
+        </li>
+        <?php if ((!empty ($_SESSION['login'])) && (!empty ($_SESSION['senha']))&& (!empty ($_SESSION['admin']))): ?>
+        <li>
+          <a href="/registrar"><i class="material-icons icon-red">assignment_ind</i> Registrar</a>
+        </li>
+        <li>
+          <a href="/agendamentos"><i class="material-icons icon-red">watch_later</i> Agendamentos</a>
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         </li>
         <li>
           <a href="/medicos"><i class="material-icons icon-red">favorite</i>Médicos</a>
         </li>
         <li>
+<<<<<<< HEAD
           <a href="/agendamentos"><i class="material-icons icon-red">watch_later</i> Agendamentos</a>
         </li>
         <li>
@@ -54,6 +67,10 @@
         </li>
        
        
+=======
+          <a href="/pacientes"><i class="material-icons icon-red">face</i>Pacientes</a>
+        </li>
+>>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
         <?php endif; ?>
         <li>
           <a class="dropdown-button" href="#!" data-activates="dropdown2">
