@@ -1,4 +1,4 @@
-<form class="paciente-form col s12" action="/add/agendamento" method="post">
+<form class="paciente-form col s12" action="/add/atendimento" method="post">
 
 
   <div class="row">
@@ -6,7 +6,7 @@
     <div class="input-field col s12">
       <label for="queixa">Queixa: </label>
 
-      <input type="text" name="queixa" id="queixa" class="materialize-textarea" data-length="300" value = "<?php echo $dados['queixa'] ?>" required >
+      <input type="text" name="queixa" id="queixa" class="materialize-textarea" data-length="300" value = "<?php echo $dados['queixa'] ?>"  >
       <span class="red-text">
       <?php echo $queixa_error ?>
     </span>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="row">
-  <div class="input-field col s6">
+  <div class="input-field col s12">
   <label for="p_renal">Problemas Renais: </label>
 
      <input type="text" name="p_renal" id="p_renal" class="materialize-textarea" data-length="300" value="<?php echo $dados['p_renal'] ?>">
@@ -34,7 +34,11 @@
     </div>
    
 
-    <div class="input-field col s6">
+   
+  </div>
+  <div class="row">
+
+  <div class="input-field col s12">
     <label for="p_articular">Problemas Articulares: </label>
   
        <input type="text" name="p_articular" id="p_articular" class="materialize-textarea" data-length="300" value="<?php echo $dados['p_articular'] ?>">
@@ -43,7 +47,6 @@
         <?php echo $p_articular_error ?>
       </span>
       </div>
-   
   </div>
   <div class="row">
   <div class="input-field col s12">
@@ -182,9 +185,11 @@
     </span>
     </div>
   </div>
-  <div class="fixed-action-btn horizontal">
-    <button class="btn-floating btn-large #ff1744 red accent-3" type="submit">
-      <i class="large material-icons">save</i>
+  <input type="hidden" name="agendamento_id" id="agendamento_id" value="<?php echo $id; ?>">
+  <div class="right horizontal">
+    <button class="btn waves-effect waves-light 
+#ff1744 red accent-3" type="submit">
+      Sinais Vitais<i class="material-icons right">favorite</i>
     </button>
   </div>
 </form>

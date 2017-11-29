@@ -17,7 +17,17 @@
                   <p>Paciente: <?php echo $agendamento['nome']; ?>  </p>
                   <p>Médico: <?php echo $agendamento['nomeCompleto']; ?>  </p>
                 </div>
+                <div class="card-action">
+                <?php if ($agendamento['agendamento_id'] == $agendamento['id']): ?>
+                  <a class="btn btn-primary left btn-sm red" href="/timeline/<?php echo $agendamento['id']; ?>"><i class="small material-icons">remove_red_eye</i></a>
+                  <?php else: ?>
+                  <a class="btn btn-primary right btn-sm disabled red" href="/add/atendimento/<?php echo $agendamento['id']; ?>">Não atendido</a>
+                  
+                  <?php endif; ?>
+                
+                </div>
               </div>
+              
             </div>
 
 

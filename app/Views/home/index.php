@@ -17,16 +17,17 @@
                   <p>Paciente: <?php echo $agendamento['nome']; ?>  </p>
                   <p>Médico: <?php echo $agendamento['nomeCompleto']; ?>  </p>
                 </div>
-<<<<<<< HEAD
+
                 <div class="card-action">
-                 
+                <?php if ($agendamento['agendamento_id'] == $agendamento['id']): ?>
+                  <a class="btn btn-primary right btn-sm disabled red" href="/add/atendimento/<?php echo $agendamento['id']; ?>">Atendido</a>
+                  <a class="btn btn-primary left btn-sm red" href="/timeline/<?php echo $agendamento['id']; ?>"><i class="small material-icons">remove_red_eye</i></a>
+                  <?php else: ?>
                   <a class="btn btn-primary right btn-sm red" href="/add/atendimento/<?php echo $agendamento['id']; ?>">Atender</a>
                   
-               
+                  <?php endif; ?>
                 </div>
-=======
-               
->>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
+                
               </div>
             </div>
 
@@ -43,11 +44,11 @@
 <div class="section"></div>
 <div class="section">
 <center>
-<<<<<<< HEAD
+
  <h5 class="red-text">Nenhum agendamento cadastrado para hoje</h5>
-=======
- <h5 class="red-text">Nenhum agendamento cadastrado</h5>
->>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
+
+ 
+
 </center>
 </div>
 

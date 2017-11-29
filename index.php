@@ -26,10 +26,6 @@ $app->post('/registrar', function ()
     $AuthController = new \App\Controllers\AuthController;
     $AuthController->store();
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
 $app->post('/logout', function ()
 {
     $AuthController = new \App\Controllers\AuthController;
@@ -117,7 +113,7 @@ $app->get('/estados/{id}', function ($request)
 {
     $id = $request->getAttribute('id');
     $ClientsController = new \App\Controllers\ClientsController;
-    $ClientsController->states(id);
+    $ClientsController->states($id);
 });
 // edição de Pacientes
 // exibe o formulário de edição
@@ -183,8 +179,6 @@ $app->get('/remove/medico/{id}', function ($request)
 {
     // pega o ID da URL
     $id = $request->getAttribute('id');
-<<<<<<< HEAD
-
     $MedicoController = new \App\Controllers\MedicoController;
     $MedicoController->remove($id);
 });
@@ -211,26 +205,79 @@ $app->get('/add/atendimento/{id}', function ($request)
 {
     $id = $request->getAttribute('id');
     $AtendimentoController = new \App\Controllers\AtendimentoController;
-    $AtendimentoController->create();
+    $AtendimentoController->create($id);
 });
 
 $app->post('/add/atendimento', function ()
 {
     $AtendimentoController = new \App\Controllers\AtendimentoController;
     $AtendimentoController->store();
-=======
-
-    $MedicoController = new \App\Controllers\MedicoController;
-    $MedicoController->remove($id);
 });
-// remove um Agendamento
-$app->get('/remove/agendamento/{id}', function ($request)
+$app->get('/add/sinais/{id}', function ($request)
 {
-    // pega o ID da URL
     $id = $request->getAttribute('id');
+    $SinaisController = new \App\Controllers\SinaisController;
+    $SinaisController->create($id);
+});
 
-    $AgendamentoController = new \App\Controllers\AgendamentoController;
-    $AgendamentoController->remove($id);
->>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
+$app->post('/add/sinais', function ()
+{
+    $SinaisController = new \App\Controllers\SinaisController;
+    $SinaisController->store();
+});
+$app->get('/add/hipotese/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $HipoteseController = new \App\Controllers\HipoteseController;
+    $HipoteseController->create($id);
+});
+
+$app->post('/add/hipotese', function ()
+{
+    $HipoteseController = new \App\Controllers\HipoteseController;
+    $HipoteseController->store();
+});
+$app->get('/add/prescricao/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $PrescricaoController = new \App\Controllers\PrescricaoController;
+    $PrescricaoController->create($id);
+});
+
+$app->post('/add/prescricao', function ()
+{
+    $PrescricaoController = new \App\Controllers\PrescricaoController;
+    $PrescricaoController->store();
+});
+$app->get('/add/evolucao/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $EvolucaoController = new \App\Controllers\EvolucaoController;
+    $EvolucaoController->create($id);
+});
+
+$app->post('/add/evolucao', function ()
+{
+    $EvolucaoController = new \App\Controllers\EvolucaoController;
+    $EvolucaoController->store();
+});
+$app->get('/add/atestado/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $AtestadoController = new \App\Controllers\AtestadoController;
+    $AtestadoController->create($id);
+});
+
+$app->post('/add/atestado', function ()
+{
+    $AtestadoController = new \App\Controllers\AtestadoController;
+    $AtestadoController->store();
+});
+$app->get('/timeline/{id}', function ($request)
+{
+    $id = $request->getAttribute('id');
+    $HomeController = new \App\Controllers\HomeController;
+    $HomeController->timeline($id);
+
 });
 $app->run();

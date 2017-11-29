@@ -1,11 +1,11 @@
 <?php
 namespace App\Models;
 use App\DB;
-class Atendimento {
+class Hipotese {
    /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */
    public static function selectAll($id = null) {
      $where = ''; if (!empty($id)) { $where = 'WHERE id = :id'; }
-     $sql = sprintf("SELECT id, queixa, historico, p_renal, p_articular, p_cardiaco, p_respiratorio, p_gastrico, p_cicatrizar, alergias, hepatite, gravidez, diabetes, medicamentos, agendamento_id FROM atendimentos ORDER BY id ASC", $where);
+     $sql = sprintf("SELECT id, hipotese, observacoes,agendamento_id FROM hipoteses ORDER BY id ASC", $where);
      $DB = new DB; $stmt = $DB->prepare($sql);
 
         if (!empty($where))
@@ -15,16 +15,16 @@ class Atendimento {
 
         $stmt->execute();
 
-        $atendimentos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $hipoteses = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 
-        return $atendimentos;
+        return $hipoteses;
     }
    
     /*
     Salva no banco de dados um novo usuário
      */
-    public static function save($queixa,$historico , $p_renal, $p_articular, $p_cardiaco, $p_respiratorio, $p_gastrico, $p_cicatrizar, $alergias, $hepatite, $gravidez, $diabetes, $medicamentos, $agendamento_id)
+    public static function save($hipotese, $observacoes,$agendamento_id)
     {
         // validação (bem simples, só pra evitar dados vazios)
         
@@ -33,23 +33,12 @@ class Atendimento {
 
         // insere no banco
         $DB = new DB;
-        $sql = "INSERT INTO atendimentos
-        (queixa, historico,p_renal, p_articular, p_cardiaco, p_respiratorio, p_gastrico, p_cicatrizar, alergias, hepatite, gravidez, diabetes, medicamentos, agendamento_id)
-         VALUES(:queixa, :historico ,:p_renal, :p_articular, :p_cardiaco, :p_respiratorio, :p_gastrico, :p_cicatrizar,:alergias, :hepatite, :gravidez, :diabetes, :medicamentos, :agendamento_id)";
+        $sql = "INSERT INTO hipoteses
+        (hipotese, observacoes,agendamento_id)
+         VALUES(:hipotese, :observacoes ,:agendamento_id)";
           $stmt = $DB->prepare($sql);
-          $stmt->bindParam(':queixa', $queixa);
-          $stmt->bindParam(':historico', $historico);
-          $stmt->bindParam(':p_renal', $p_renal);
-          $stmt->bindParam(':p_articular', $p_articular);
-          $stmt->bindParam(':p_cardiaco', $p_cardiaco);
-          $stmt->bindParam(':p_respiratorio', $p_respiratorio);
-          $stmt->bindParam(':p_gastrico', $p_gastrico);
-          $stmt->bindParam(':p_cicatrizar', $p_cicatrizar);
-          $stmt->bindParam(':alergias', $alergias);
-          $stmt->bindParam(':hepatite', $hepatite);
-          $stmt->bindParam(':gravidez', $gravidez);
-          $stmt->bindParam(':diabetes', $diabetes);
-          $stmt->bindParam(':medicamentos', $medicamentos);
+          $stmt->bindParam(':hipotese', $hipotese);
+          $stmt->bindParam(':observacoes', $observacoes);
           $stmt->bindParam(':agendamento_id', $agendamento_id);
     
         if ($stmt->execute())

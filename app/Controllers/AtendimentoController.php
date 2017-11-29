@@ -39,30 +39,25 @@ class AtendimentoController {
     public function store()
     {
         session_start();
-        $estados = State::selectAll();
-        $cidades = City::selectAll();
-        $especialidades = Especialidade::selectAll();
         $dados = $_POST;
         // pega os dados do formuário
-        $nomeCompleto = isset($_POST['nomeCompleto']) ? $_POST['nomeCompleto'] : null;
-        $crm = isset($_POST['crm']) ? $_POST['crm'] : null;
-        $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
-        $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
-        $naturalidade = isset($_POST['naturalidade']) ? $_POST['naturalidade'] : null;
-        $nacionalidade = isset($_POST['nacionalidade']) ? $_POST['nacionalidade'] : null;
-        $email = isset($_POST['email']) ? $_POST['email'] : null;
-        $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
-        $celular= isset($_POST['celular']) ? $_POST['celular'] : null;
-        $idestado = isset($_POST['idestado']) ? $_POST['idestado'] : null;
-        $idcidade = isset($_POST['idcidade']) ? $_POST['idcidade'] : null;
-        $idesp = isset($_POST['idesp']) ? $_POST['idesp'] : null;
-        $bairro = isset($_POST['bairro']) ? $_POST['bairro'] : null;
-        $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : null;
-        $cep = isset($_POST['cep']) ? $_POST['cep'] : null;
-        $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : null;
-        $trabalho = isset($_POST['trabalho']) ? $_POST['trabalho'] : null;
-        $datanascimento = isset($_POST['datanascimento']) ? $_POST['datanascimento'] : null;
+        $queixa = isset($_POST['queixa']) ? $_POST['queixa'] : null;
+        $historico = isset($_POST['historico']) ? $_POST['historico'] : null;
+        $p_renal = isset($_POST['p_renal']) ? $_POST['p_renal'] : null;
+        $p_articular = isset($_POST['p_articular']) ? $_POST['p_articular'] : null;
+        $p_cardiaco = isset($_POST['p_cardiaco']) ? $_POST['p_cardiaco'] : null;
+        $p_respiratorio = isset($_POST['p_respiratorio']) ? $_POST['p_respiratorio'] : null;
+        $p_gastrico = isset($_POST['p_gastrico']) ? $_POST['p_gastrico'] : null;
+        $alergias = isset($_POST['alergias']) ? $_POST['alergias'] : null;
+        $medicamentos= isset($_POST['medicamentos']) ? $_POST['medicamentos'] : null;
+        $p_cicatrizar = isset($_POST['p_cicatrizar']) ? $_POST['p_cicatrizar'] : null;
+        $hepatite = isset($_POST['hepatite']) ? $_POST['hepatite'] : null;
+        $gravidez = isset($_POST['gravidez']) ? $_POST['gravidez'] : null;
+        $diabetes = isset($_POST['diabetes']) ? $_POST['diabetes'] : null;
+        $agendamento_id = $_POST['agendamento_id'];
 
+       
+        /*
         if(empty($_POST['idesp']) && empty($_POST['idcidade']) && Medico::rg($rg) == true && Medico::cpf($cpf) == true  && Medico::crm($crm) == true ){
             $cidade_error = "Selecione sua cidade";
             $rg_error = "RG já está inserido!";
@@ -124,16 +119,15 @@ class AtendimentoController {
             \App\View::make('Inserindo Médico','medicos/create', ['especialidade_error' => $especialidade_error ,'dados' => $dados,
             'estados' => $estados, 'cidades'=> $cidades, 'especialidades' => $especialidades]);
         }
-       
-        
-        if (Medico::save($idmedico, $nomeCompleto, $crm, $cpf, $rg, $datanascimento,
-         $naturalidade, $nacionalidade, $email, $telefone, $celular, $idesp, $idestado,
-         $idcidade, $endereco, $bairro,$cep, $complemento, $trabalho))
+       */
+    
+        if (Atendimento::save($queixa,$historico, $p_renal, $p_articular, $p_cardiaco, $p_respiratorio, $p_gastrico, $p_cicatrizar, $alergias, $hepatite, $gravidez, $diabetes, $medicamentos, $agendamento_id))
         {
             session_start();
-            $sucessMsg = "Médico adicionado com sucesso!";
+            $id = $agendamento_id;
+            $sucessMsg = "Atendimento iniciado com sucesso!";
             $_SESSION['mensagem'] = $sucessMsg;
-            header('Location: /medicos');
+            header("Location: /add/sinais/$id");
             exit;
         }
         

@@ -66,13 +66,13 @@
                                     <i class="material-icons prefix">account_box</i>
                                     <select name="role"  id="role">
                                         <option value="" selected disabled>Selecione</option>
-<<<<<<< HEAD
+
                                         <option value="Medico">Médico</option>
                                         <option value="Admin">Admin</option>
-=======
+
                                         <option value="medico">Médico</option>
                                         <option value="admin">Admin</option>
->>>>>>> d6e730b15053ac0e10bfb44c9d73c91981ec1eed
+
                                     </select>
                                     <label for="role">Permissão</label>
 
